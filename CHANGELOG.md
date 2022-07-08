@@ -4,6 +4,8 @@ The format is based on and uses the types of changes according to [Keep a Change
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- SqlServiceAccount
+ - Only set username when using a GMSA ([Issue # 1764](https://github.com/dsccommunity/SqlServerDsc/issues/1764))
 
 ### Removed
 

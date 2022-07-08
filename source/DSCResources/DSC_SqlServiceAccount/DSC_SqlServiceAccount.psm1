@@ -258,7 +258,16 @@ function Set-TargetResource
     {
         Write-Verbose -Message ($script:localizedData.UpdatingServiceAccount -f $ServiceAccount.UserName, $serviceObject.Name)
         $account = Get-ServiceAccount -ServiceAccount $ServiceAccount
-        $serviceObject.SetServiceAccount($account.UserName, $account.Password)
+        # Only set the username if the account is GMSA
+        if ([string]::IsNullOrEmpty($account.Password))
+        {
+            $serviceObject.SetServiceAccount($account.UserName)
+        }
+        # Set both the username and password if using a non-GMSA account
+        else
+        {
+            $serviceObject.SetServiceAccount($account.UserName, $account.Password)
+        }
     }
     catch
     {
